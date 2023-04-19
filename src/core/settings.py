@@ -15,8 +15,8 @@ class Settings(BaseSettings):
     DATABASE_PORT: int = 5432
 
     class Config:
-        env_file = '.env'
-        env_file_encoding = 'utf-8'
+        env_file = ".env"
+        env_file_encoding = "utf-8"
 
     @property
     def DATABASE_URL(self) -> str:
@@ -28,8 +28,6 @@ class Settings(BaseSettings):
     @property
     def LOCAL(self) -> bool:
         return self.ENVIRONMENT == "local"
-
-
 
 
 settings = Settings()

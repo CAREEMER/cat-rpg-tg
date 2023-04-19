@@ -2,8 +2,9 @@ from typing import Union
 
 from sqlmodel import Field
 
-from .base import BaseModel
 from texts.languages import LanguagesEnum
+
+from .base import BaseModel
 
 
 class User(BaseModel, table=True):
