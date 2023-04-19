@@ -1,0 +1,31 @@
+version: '3.3'
+
+services:
+  db:
+    image: postgres:13.4
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_USER: sample_tg_bot_app
+      POSTGRES_PASSWORD: sample_tg_bot_app
+      POSTGRES_DB: sample_tg_bot_app
+      TZ: GMT+3
+    healthcheck:
+      test: pg_isready -U sample_tg_bot_app -d sample_tg_bot_app
+      interval: 30s
+      timeout: 3s
+      retries: 3
+
+  bot:
+    build: ./src
+    restart: always
+    command: python main.py
+    environment:
+      DATABASE_HOST: db
+      ENVIRONMENT: dev
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
