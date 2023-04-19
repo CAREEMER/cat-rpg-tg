@@ -1,7 +1,7 @@
 ## Commands:
 
 ### Export project requirements
-`poetry export -f requirements.txt --output src/requirements.txt`
+`poetry export --with dev -f requirements.txt --output src/requirements.txt`
 
 ### Generate migrations
 `alembic revision --autogenerate -m "init"`  
