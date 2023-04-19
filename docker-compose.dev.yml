@@ -6,6 +6,8 @@ services:
     restart: always
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
     environment:
       POSTGRES_USER: sample_tg_bot_app
       POSTGRES_PASSWORD: sample_tg_bot_app
@@ -15,6 +17,17 @@ services:
       test: pg_isready -U sample_tg_bot_app -d sample_tg_bot_app
       interval: 30s
       timeout: 3s
+      retries: 3
+
+  redis:
+    image: redis:6.2.5
+    restart: on-failure
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: redis-cli ping
+      interval: 30s
+      timeout: 10s
       retries: 3
 
   bot:
