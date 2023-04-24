@@ -2,8 +2,6 @@ from typing import Union
 
 from sqlmodel import Field
 
-from texts.languages import LanguagesEnum
-
 from .base import BaseModel
 
 
@@ -13,4 +11,8 @@ class User(BaseModel, table=True):
     mention: Union[str, None]
     full_name: Union[str, None]
 
-    language: str = Field(default=LanguagesEnum.ru)
+    language: Union[str, None]
+
+    @property
+    def verbose_name(self):
+        return self.full_name or self.username or self.mention

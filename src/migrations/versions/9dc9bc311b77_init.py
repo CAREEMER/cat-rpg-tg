@@ -1,8 +1,8 @@
 """init
 
-Revision ID: 1649cd44bff1
+Revision ID: 9dc9bc311b77
 Revises:
-Create Date: 2023-04-19 00:07:18.242948
+Create Date: 2023-04-20 18:13:22.444224
 
 """
 import sqlalchemy as sa
@@ -10,7 +10,7 @@ import sqlmodel
 from alembic import op
 
 # revision identifiers, used by Alembic.
-revision = "1649cd44bff1"
+revision = "9dc9bc311b77"
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -24,7 +24,7 @@ def upgrade() -> None:
         sa.Column("username", sqlmodel.sql.sqltypes.AutoString(), nullable=True),
         sa.Column("mention", sqlmodel.sql.sqltypes.AutoString(), nullable=True),
         sa.Column("full_name", sqlmodel.sql.sqltypes.AutoString(), nullable=True),
-        sa.Column("language", sqlmodel.sql.sqltypes.AutoString(), nullable=False),
+        sa.Column("language", sqlmodel.sql.sqltypes.AutoString(), nullable=True),
         sa.PrimaryKeyConstraint("id"),
     )
     op.create_index(op.f("ix_user_id"), "user", ["id"], unique=False)

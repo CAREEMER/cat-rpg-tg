@@ -2,7 +2,7 @@ from typing import Dict, List, Tuple, Union
 
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-from services.message import generate_imessage_id
+from services.reply_markup_message import generate_imessage_id
 from texts.languages import LanguagesEnum
 
 

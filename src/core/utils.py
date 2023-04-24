@@ -53,22 +53,3 @@ def private_admin_command():
         return wrapped
 
     return wrapper
-
-
-PARAMS_SPLITTER = "##"
-EQUASION_SYMBOL = "#"
-
-
-def make_params(**kwargs) -> str:
-    return PARAMS_SPLITTER.join([f"{key}{EQUASION_SYMBOL}{value}" for key, value in kwargs.items()])
-
-
-def parse_params(params_str: str) -> dict:
-    params_list = params_str.split(PARAMS_SPLITTER)
-
-    params = {}
-    for param in params_list:
-        key, value = param.split(EQUASION_SYMBOL)
-        params[key] = value
-
-    return params

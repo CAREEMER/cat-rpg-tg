@@ -4,18 +4,30 @@ from .languages import LanguagesEnum
 
 
 class BaseTextsContainer:
-    hello = ""
     chosen_language = ""
+    menu = ""
+    enter_dungeon = ""
+    settings = ""
+    choose_settings_option = ""
+    language = ""
 
 
 class RuTextContainer:
-    hello = "Привет"
     chosen_language = "Вы установили русский язык!"
+    menu = "Выберите активность:"
+    enter_dungeon = "Войти в подземелье"
+    settings = "Настройки"
+    choose_settings_option = "Выберите опцию настроек:"
+    language = "Выбрать язык"
 
 
 class EnTextContainer:
-    hello = "Hello"
     chosen_language = "You have chosen english language!"
+    menu = "Choose an activity:"
+    enter_dungeon = "Enter the dungeon"
+    settings = "Settings"
+    choose_settings_option = "Choose settings option:"
+    language = "Choose a language"
 
 
 LANGS = {

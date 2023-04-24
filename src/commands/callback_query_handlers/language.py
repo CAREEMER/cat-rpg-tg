@@ -3,11 +3,19 @@ import json
 from aiogram import types
 
 from core import dp
-from core.utils import parse_params
-from services.message import get_reply_markup_message
+from core.enums import InlineButtonCallbackQueryEnum
+from services.messages.choose_language import send_choose_language_message
+from services.messages.menu import get_menu_text_and_keyboard
+from services.reply_markup_message import get_reply_markup_message
 from services.user import get_user
 from texts.languages import LanguagesEnum
 from texts.loader import LANGS
+
+
+@dp.callback_query_handler(lambda c: c.data == InlineButtonCallbackQueryEnum.language.name)
+async def process_language_menu(callback_query: types.CallbackQuery):
+    user = get_user(callback_query.from_user)
+    await send_choose_language_message(user, callback_query=callback_query)
 
 
 @dp.callback_query_handler(lambda c: c.data.startswith("lan_"))
@@ -33,3 +41,6 @@ async def process_language_choosing(callback_query: types.CallbackQuery):
     await callback_query.bot.send_message(
         chat_id=callback_query.from_user.id, text=LANGS.get(user.language).chosen_language
     )
+
+    text, keyboard = get_menu_text_and_keyboard(user)
+    await callback_query.bot.send_message(chat_id=callback_query.from_user.id, text=text, reply_markup=keyboard)
